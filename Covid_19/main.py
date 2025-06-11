@@ -58,7 +58,7 @@ def gr(from1,to,df,status,country):
 
     }).sort_values('Confirm',ascending = False)
     return grouped
-df_confirm_melt
+# df_confirm_melt
 
 df_recover_melt = df_recover.melt(id_vars = ['Province/State','Country/Region','Lat','Long'],var_name = 'Date',value_name = 'Recover')
 df_recover_melt['Date'] = pd.to_datetime(df_recover_melt['Date'])
@@ -112,7 +112,7 @@ temporary_da = da_tem.loc['2020-12-14':'2021-5-29']
 temporary_da['Recover'] = round((temporary_da['Confirm']*rr)/100,0)
 da_tem.loc['2020-12-14':'2021-5-29'] = temporary_da
 merge_df[merge_df['Country/Region'] == 'USA'] = da_tem
-merge_df
+# merge_df
 # da[da['Country/Region'] == 'USA']
 def compute_features(df):
     df = df.sort_values('Date').copy()
@@ -130,7 +130,7 @@ merge_df = merge_df.reset_index()
 merge_df['Date']
 da = merge_df.groupby('Country/Region', group_keys=False).apply(compute_features).reset_index(drop=True)
 da[['Lat','Long']] = da[['Lat','Long']].astype('float64')
-da
+# da
 # da['Date'] = pd.to_datetime(da['Date'])
 # import pandas as pd
 import pycountry_convert as pc
