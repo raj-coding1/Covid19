@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 import google.generativeai as genai
 
 # Configure Gemini API
-genai.configure(api_key="AIzaSyAV4-9fv3ltLsPKySpHeRTojdyzr_BXG_o")
+genai.configure(api_key="")
 model = genai.GenerativeModel(model_name="models/gemini-2.0-flash")
 
 st.set_page_config(
