@@ -10,7 +10,7 @@ genai.configure(api_key="")
 model = genai.GenerativeModel(model_name="models/gemini-2.0-flash")
 
 st.set_page_config(
-    page_title="Covid-20 Dashboard",
+    page_title="Covid-19 Dashboard",
     layout="wide"
 )
 
@@ -28,12 +28,6 @@ df_death.columns = df_death.iloc[0]
 df_death = df_death[1:].reset_index()
 df_death.drop('index',axis = 1,inplace = True)
 
-
-# df_recover
-# df_confirm
-# df_death
-
-#melt
 df_confirm_melt = df_confirm.melt(id_vars = ['Province/State','Country/Region','Lat','Long'],var_name = 'Date',value_name = 'Confirm')
 df_confirm_melt['Date'] = pd.to_datetime(df_confirm_melt['Date'])
 df_confirm_melt.set_index('Date',inplace = True)
@@ -127,7 +121,7 @@ def compute_features(df):
 
     return df
 merge_df = merge_df.reset_index()
-merge_df['Date']
+
 da = merge_df.groupby('Country/Region', group_keys=False).apply(compute_features).reset_index(drop=True)
 da[['Lat','Long']] = da[['Lat','Long']].astype('float64')
 # da
@@ -163,9 +157,7 @@ def country_to_continent(country_name):
         return 'Unknown'
 
 
-# da[da['Single_Confirm']<0]
 
-# da
 da['Continent'] = da['Country/Region'].apply(country_to_continent)
 df_confirm_melt['Province/State'].fillna('All Province',inplace = True)
 df_confirm_melt['Continent'] = df_confirm_melt['Country/Region'].apply(country_to_continent)
@@ -200,7 +192,7 @@ temporary_da = da_tem.loc['2020-12-14':'2021-5-29']
 temporary_da['Recover'] = round((temporary_da['Confirm']*rr)/100,0)
 da_tem.loc['2020-12-14':'2021-5-29'] = temporary_da
 da[da['Country/Region'] == 'USA'] = da_tem
-da[da['Country/Region'] == 'USA']
+# da[da['Country/Region'] == 'USA']
 
 
 
@@ -809,7 +801,7 @@ with tab1:
             
 
 
-            st.dataframe(df2)
+            # st.dataframe(df2)
             top_data = {
                 "Country": ["USA", "India", "Brazil", "Russia", "UK"],
                 "Confirmed": [105_000_000, 45_000_000, 35_000_000, 30_000_000, 25_000_000]
@@ -893,9 +885,9 @@ with tab1:
                 if Status =='Confirm':
                     new_df = df_confirm_melt[mask1]
                     # new_df = new_df['Country/Region'].str.replace('US',"USA")
-                    new_df
+                    # new_df
                     new_df = new_df[new_df['Country/Region'] == country]
-                    new_df
+                    # new_df
                     # x= new_df.groupby('Province/State')['Confirm'].sum()
                     ld = new_df.loc[to1]
                     new_df['Single_Confirm']=new_df.groupby('Province/State')['Confirm'].diff().fillna(0)
@@ -916,7 +908,7 @@ with tab1:
                         # x= new_df.groupby('Province/State')['Confirm'].sum()
                         ld = new_df.loc[to1]
                         new_df['Single_Death']=new_df.groupby('Province/State')[Status].diff().fillna(0)
-                new_df
+                # new_df
                 df_new = new_df[new_df['Country/Region']==country]
                 # df_new
                 # df_new
