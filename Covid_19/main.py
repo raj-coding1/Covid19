@@ -10,7 +10,7 @@ genai.configure(api_key="")
 model = genai.GenerativeModel(model_name="models/gemini-2.0-flash")
 
 st.set_page_config(
-    page_title="Covid-19 Dashboard",
+    page_title="Covid-20 Dashboard",
     layout="wide"
 )
 
